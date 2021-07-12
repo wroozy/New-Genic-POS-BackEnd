@@ -5,6 +5,7 @@ import lk.wroozy.newgeniccomputer.service.SupplierService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,16 +32,16 @@ public class SupplierController {
     }
 
 //    SupplierRequestDTO cannot be null any attribute when frontend send to me 
-    @PutMapping("/update/{supplierId}")
-    public ResponseEntity<?> updateSupplier(@RequestBody SupplierRequestDTO supplierRequestDTO, @PathVariable String supplierId, Principal principal) {
+    @PutMapping("/update")
+    public ResponseEntity<?> updateSupplier(@RequestBody SupplierRequestDTO supplierRequestDTO, @RequestParam String supplierId, Principal principal) {
         LOGGER.info("request - supplier | updateSupplier | supplierRequestDTO: {} | supplierId: {} | adminId: {}", supplierRequestDTO, supplierId, principal.getName());
         ResponseEntity<?> responseEntity = supplierService.updateSupplier(supplierRequestDTO, supplierId);
         LOGGER.info("response - supplier | updateSupplier | response: {}", responseEntity.getBody());
         return responseEntity;
     }
 
-    @DeleteMapping("/removeSupplier/{supplierId}")
-    public ResponseEntity<?> removeSupplier(@PathVariable String supplierId, Principal principal) {
+    @DeleteMapping("/removeSupplier")
+    public ResponseEntity<?> removeSupplier(@RequestParam String supplierId, Principal principal) {
         LOGGER.info("request - supplier | removeSupplier | supplierId: {} | adminId: {}", supplierId, principal.getName());
         ResponseEntity<?> responseEntity = supplierService.removeSupplier(supplierId);
         LOGGER.info("response - supplier | removeSupplier | response: {}", responseEntity.getBody());
