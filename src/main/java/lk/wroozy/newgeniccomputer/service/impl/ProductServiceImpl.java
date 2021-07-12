@@ -2,6 +2,9 @@ package lk.wroozy.newgeniccomputer.service.impl;
 
 import lk.wroozy.newgeniccomputer.dto.ProductVariationDTO;
 import lk.wroozy.newgeniccomputer.dto.request.ProductRequestDTO;
+import lk.wroozy.newgeniccomputer.dto.response.CategoryResponseDTO;
+import lk.wroozy.newgeniccomputer.dto.response.ProductDetailResponseDTO;
+import lk.wroozy.newgeniccomputer.dto.response.ProductResponseDTO;
 import lk.wroozy.newgeniccomputer.entity.CategoryEntity;
 import lk.wroozy.newgeniccomputer.entity.ProductDetailEntity;
 import lk.wroozy.newgeniccomputer.entity.ProductEntity;
@@ -71,5 +74,58 @@ public class ProductServiceImpl implements ProductService {
         }catch (Exception e){
             throw new CustomException("Failed to add product : "+e.getMessage());
         }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllProducts() {
+        try{
+            List<ProductEntity> all = productRepository.findAll();
+            if(all.isEmpty())
+                return new ResponseEntity<>("No product found",HttpStatus.NOT_FOUND);
+
+            List<ProductResponseDTO> responseList = new ArrayList<>();
+            for (ProductEntity productEntity :
+                    all) {
+                responseList.add(setProductResponse(productEntity));
+            }
+            return new ResponseEntity<>(responseList,HttpStatus.OK);
+        }catch (Exception e){
+            throw new CustomException("Failed to Fetch products : "+e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getProduct(long productId) {
+        try{
+            if (productId == 0)
+                return new ResponseEntity<>("Product id not found",HttpStatus.NOT_FOUND);
+
+            Optional<ProductEntity> productEntity = productRepository.findById(productId);
+            if (productEntity.isEmpty())
+                return new ResponseEntity<>("No product found",HttpStatus.NOT_FOUND);
+
+            ProductResponseDTO productResponseDTO = setProductResponse(productEntity.get());
+            return new ResponseEntity<>(productResponseDTO,HttpStatus.OK);
+
+        }catch (Exception e){
+            throw new CustomException("Failed to fetch product : "+e.getMessage());
+        }
+    }
+
+    private ProductResponseDTO setProductResponse(ProductEntity productEntity){
+        ProductResponseDTO responseDTO = modelMapper.map(productEntity, ProductResponseDTO.class);
+        List<ProductDetailEntity> detailList = productDetailRepository.findByProductEntity(productEntity);
+        List<ProductDetailResponseDTO> detailResponseList = new ArrayList<>();
+        for (ProductDetailEntity productDetailEntity:
+                detailList) {
+            ProductDetailResponseDTO detailResponseDTO = modelMapper.map(productDetailEntity, ProductDetailResponseDTO.class);
+            detailResponseDTO.setUpdateDate(productDetailEntity.getUpdateDate().toString());
+            detailResponseDTO.setUpdateTime(productDetailEntity.getUpdateTime().toString());
+            detailResponseList.add(detailResponseDTO);
+        }
+        CategoryResponseDTO categoryResponseDTO = modelMapper.map(productEntity.getCategoryEntity(), CategoryResponseDTO.class);
+        responseDTO.setCategoryResponseDTO(categoryResponseDTO);
+        responseDTO.setProductDetailList(detailResponseList);
+        return responseDTO;
     }
 }

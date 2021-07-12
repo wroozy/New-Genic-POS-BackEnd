@@ -907,170 +907,342 @@ SELECT|sys.sys_config
 </ObjectGrants>
     </user>
     <table id="283" parent="4" name="admin"/>
-    <table id="284" parent="4" name="supplier"/>
-    <table id="285" parent="4" name="supply_order"/>
-    <table id="286" parent="4" name="supply_payment"/>
-    <column id="287" parent="283" name="admin_id">
+    <table id="284" parent="4" name="category"/>
+    <table id="285" parent="4" name="product"/>
+    <table id="286" parent="4" name="product_detail"/>
+    <table id="287" parent="4" name="supplier"/>
+    <table id="288" parent="4" name="supply_order"/>
+    <table id="289" parent="4" name="supply_order_detail"/>
+    <table id="290" parent="4" name="supply_payment"/>
+    <column id="291" parent="283" name="admin_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="288" parent="283" name="first_name">
+    <column id="292" parent="283" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="289" parent="283" name="gmail">
+    <column id="293" parent="283" name="gmail">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="290" parent="283" name="last_name">
+    <column id="294" parent="283" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="291" parent="283" name="mobile">
+    <column id="295" parent="283" name="mobile">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="292" parent="283" name="nic">
+    <column id="296" parent="283" name="nic">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="293" parent="283" name="password">
+    <column id="297" parent="283" name="password">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="294" parent="283" name="registered_date">
+    <column id="298" parent="283" name="registered_date">
       <Position>8</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="295" parent="283" name="registered_time">
+    <column id="299" parent="283" name="registered_time">
       <Position>9</Position>
       <DataType>time|0s</DataType>
     </column>
-    <column id="296" parent="283" name="username">
+    <column id="300" parent="283" name="username">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="297" parent="283" name="uuid">
+    <column id="301" parent="283" name="uuid">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="298" parent="283" name="PRIMARY">
+    <key id="302" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>admin_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="299" parent="284" name="supplier_id">
+    <column id="303" parent="284" name="category_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="300" parent="284" name="address">
+    <column id="304" parent="284" name="category">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="301" parent="284" name="gmail">
+    <column id="305" parent="284" name="description">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="302" parent="284" name="mobile">
+    <column id="306" parent="284" name="fk_admin_id">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="303" parent="284" name="registration_no">
-      <Position>5</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="304" parent="284" name="fk_admin_id">
-      <Position>6</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="305" parent="284" name="name">
-      <Position>7</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="306" parent="284" name="supplier_uuid">
-      <Position>8</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <index id="307" parent="284" name="FKse7hqudcrdik098x6nhn7vndn">
+    <index id="307" parent="284" name="FKmv3v6uamrkmjd4eqvqx6dwpd2">
       <ColNames>fk_admin_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="308" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>supplier_id</ColNames>
+      <ColNames>category_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="309" parent="284" name="FKse7hqudcrdik098x6nhn7vndn">
+    <foreign-key id="309" parent="284" name="FKmv3v6uamrkmjd4eqvqx6dwpd2">
       <ColNames>fk_admin_id</ColNames>
       <RefTableName>admin</RefTableName>
       <RefColNames>admin_id</RefColNames>
     </foreign-key>
-    <column id="310" parent="285" name="supply_order_id">
+    <column id="310" parent="285" name="product_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="311" parent="285" name="date">
+    <column id="311" parent="285" name="brand">
       <Position>2</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="312" parent="285" name="time">
+    <column id="312" parent="285" name="description">
       <Position>3</Position>
-      <DataType>time|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="313" parent="285" name="fk_supplier_id">
+    <column id="313" parent="285" name="name">
       <Position>4</Position>
-      <DataType>bigint|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="314" parent="285" name="fk_supply_paymetn_id">
+    <column id="314" parent="285" name="fk_category_id">
       <Position>5</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <index id="315" parent="285" name="FKhfe1dvohvm3diyxwa6eh62p86">
+    <index id="315" parent="285" name="FKpxqa5fj6hpcc9mew356eoj68d">
+      <ColNames>fk_category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="316" parent="285" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>product_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="317" parent="285" name="FKpxqa5fj6hpcc9mew356eoj68d">
+      <ColNames>fk_category_id</ColNames>
+      <RefTableName>category</RefTableName>
+      <RefColNames>category_id</RefColNames>
+    </foreign-key>
+    <column id="318" parent="286" name="product_detail_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="319" parent="286" name="buying_price">
+      <Position>2</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="320" parent="286" name="sale_price">
+      <Position>3</Position>
+      <DataType>double|0s</DataType>
+    </column>
+    <column id="321" parent="286" name="size">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="322" parent="286" name="stock">
+      <Position>5</Position>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="323" parent="286" name="update_date">
+      <Position>6</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="324" parent="286" name="update_time">
+      <Position>7</Position>
+      <DataType>time|0s</DataType>
+    </column>
+    <column id="325" parent="286" name="warranty">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="326" parent="286" name="fk_product_id">
+      <Position>9</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="327" parent="286" name="FKptjwyw5d6tu8i6d41mvbbptx0">
+      <ColNames>fk_product_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="328" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>product_detail_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="329" parent="286" name="FKptjwyw5d6tu8i6d41mvbbptx0">
+      <ColNames>fk_product_id</ColNames>
+      <RefTableName>product</RefTableName>
+      <RefColNames>product_id</RefColNames>
+    </foreign-key>
+    <column id="330" parent="287" name="supplier_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="331" parent="287" name="address">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="332" parent="287" name="gmail">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="333" parent="287" name="mobile">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="334" parent="287" name="registration_no">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="335" parent="287" name="fk_admin_id">
+      <Position>6</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="336" parent="287" name="name">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="337" parent="287" name="supplier_uuid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <index id="338" parent="287" name="FKse7hqudcrdik098x6nhn7vndn">
+      <ColNames>fk_admin_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="339" parent="287" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>supplier_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="340" parent="287" name="FKse7hqudcrdik098x6nhn7vndn">
+      <ColNames>fk_admin_id</ColNames>
+      <RefTableName>admin</RefTableName>
+      <RefColNames>admin_id</RefColNames>
+    </foreign-key>
+    <column id="341" parent="288" name="supply_order_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="342" parent="288" name="date">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="343" parent="288" name="time">
+      <Position>3</Position>
+      <DataType>time|0s</DataType>
+    </column>
+    <column id="344" parent="288" name="fk_supplier_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="345" parent="288" name="fk_supply_paymetn_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="346" parent="288" name="FKhfe1dvohvm3diyxwa6eh62p86">
       <ColNames>fk_supplier_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="316" parent="285" name="FK7gaf43u91vsml1o647nbbngfq">
+    <index id="347" parent="288" name="FK7gaf43u91vsml1o647nbbngfq">
       <ColNames>fk_supply_paymetn_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="285" name="PRIMARY">
+    <key id="348" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>supply_order_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="318" parent="285" name="FKhfe1dvohvm3diyxwa6eh62p86">
+    <foreign-key id="349" parent="288" name="FKhfe1dvohvm3diyxwa6eh62p86">
       <ColNames>fk_supplier_id</ColNames>
       <RefTableName>supplier</RefTableName>
       <RefColNames>supplier_id</RefColNames>
     </foreign-key>
-    <foreign-key id="319" parent="285" name="FK7gaf43u91vsml1o647nbbngfq">
+    <foreign-key id="350" parent="288" name="FK7gaf43u91vsml1o647nbbngfq">
       <ColNames>fk_supply_paymetn_id</ColNames>
       <RefTableName>supply_payment</RefTableName>
       <RefColNames>supply_payment_id</RefColNames>
     </foreign-key>
-    <column id="320" parent="286" name="supply_payment_id">
+    <column id="351" parent="289" name="supply_order_detail_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="321" parent="286" name="discount">
+    <column id="352" parent="289" name="order_price">
       <Position>2</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="322" parent="286" name="total">
+    <column id="353" parent="289" name="qty">
       <Position>3</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="323" parent="286" name="PRIMARY">
+    <column id="354" parent="289" name="fk_product_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="355" parent="289" name="fk_supply_order_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <index id="356" parent="289" name="FK3sf27imu55u72ay8bx5qt6o91">
+      <ColNames>fk_product_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="357" parent="289" name="FKt6uxfgrwjh6si356knicikafy">
+      <ColNames>fk_supply_order_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="358" parent="289" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>supply_order_detail_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="359" parent="289" name="FK3sf27imu55u72ay8bx5qt6o91">
+      <ColNames>fk_product_id</ColNames>
+      <RefTableName>product</RefTableName>
+      <RefColNames>product_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="360" parent="289" name="FKt6uxfgrwjh6si356knicikafy">
+      <ColNames>fk_supply_order_id</ColNames>
+      <RefTableName>supply_order</RefTableName>
+      <RefColNames>supply_order_id</RefColNames>
+    </foreign-key>
+    <column id="361" parent="290" name="supply_payment_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="362" parent="290" name="discount">
+      <Position>2</Position>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="363" parent="290" name="total">
+      <Position>3</Position>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="364" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>supply_payment_id</ColNames>
       <Primary>1</Primary>
