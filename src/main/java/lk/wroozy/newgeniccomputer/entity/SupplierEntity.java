@@ -17,7 +17,7 @@ public class SupplierEntity {
     private String regNo;
     private String mobile;
     private String gmail;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "fk_admin_id")
     private AdminEntity adminEntity;
 

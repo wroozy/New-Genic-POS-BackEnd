@@ -12,7 +12,7 @@ public class CategoryEntity {
     private long categoryId;
     private String category;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_admin_id")
     private AdminEntity adminEntity;
 
