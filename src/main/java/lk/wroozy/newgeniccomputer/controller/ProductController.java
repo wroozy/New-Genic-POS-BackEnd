@@ -1,6 +1,7 @@
 package lk.wroozy.newgeniccomputer.controller;
 
 import lk.wroozy.newgeniccomputer.dto.request.ProductRequestDTO;
+import lk.wroozy.newgeniccomputer.dto.request.ProductUpdateRequestDTO;
 import lk.wroozy.newgeniccomputer.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,4 +47,27 @@ public class ProductController {
         return response;
     }
 
+    @PutMapping("/updateProduct")
+    public ResponseEntity<?> updateProduct(@RequestBody ProductUpdateRequestDTO updateRequestDTO, @RequestParam long productId, Principal principal) {
+        LOGGER.info("request - product | updateProduct | productUpdateRequest: {} | productId: {} | adminId: {}", updateRequestDTO, productId, principal.getName());
+        ResponseEntity<?> response = productService.updateProduct(updateRequestDTO, productId);
+        LOGGER.info("response - product | updateProduct | response: {}", response);
+        return response;
+    }
+
+    @DeleteMapping("/deleteProduct")
+    public ResponseEntity<?> deleteProduct(@RequestParam long productId,Principal principal){
+        LOGGER.info("request - product | deleteProduct | productId: {} | adminId: {}", productId, principal.getName());
+        ResponseEntity<?> response = productService.removeProduct(productId);
+        LOGGER.info("response - product | deleteProduct | response: {}", response);
+        return response;
+    }
+
+    @DeleteMapping("/deleteProductDetail")
+    public ResponseEntity<?> deleteProductDetail(@RequestParam long productDetailId,Principal principal){
+        LOGGER.info("request - product | deleteProductDetail | productDetailId: {} | adminId: {}", productDetailId, principal.getName());
+        ResponseEntity<?> response = productService.removeProductDetail(productDetailId);
+        LOGGER.info("response - product | deleteProductDetail | response: {}", response);
+        return response;
+    }
 }

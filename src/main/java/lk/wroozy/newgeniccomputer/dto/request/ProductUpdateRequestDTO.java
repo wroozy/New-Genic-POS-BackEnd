@@ -2,21 +2,21 @@ package lk.wroozy.newgeniccomputer.dto.request;
 
 import java.util.List;
 
-public class ProductRequestDTO {
+public class ProductUpdateRequestDTO {
     private String name;
     private String description;
     private String brand;
-    private List<ProductVariationDTO> variationList;
+    private List<ProductUpdateVariationDTO> variationList;
     private long categoryId;
 
-    public ProductRequestDTO() {
+    public ProductUpdateRequestDTO() {
     }
 
-    public ProductRequestDTO(String name,
-                             String description,
-                             String brand,
-                             List<ProductVariationDTO> variationList,
-                             long categoryId) {
+    public ProductUpdateRequestDTO(String name,
+                                   String description,
+                                   String brand,
+                                   List<ProductUpdateVariationDTO> variationList,
+                                   long categoryId) {
         this.name = name;
         this.description = description;
         this.brand = brand;
@@ -48,11 +48,11 @@ public class ProductRequestDTO {
         this.brand = brand;
     }
 
-    public List<ProductVariationDTO> getVariationList() {
+    public List<ProductUpdateVariationDTO> getVariationList() {
         return variationList;
     }
 
-    public void setVariationList(List<ProductVariationDTO> variationList) {
+    public void setVariationList(List<ProductUpdateVariationDTO> variationList) {
         this.variationList = variationList;
     }
 

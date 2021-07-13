@@ -11,7 +11,7 @@ public class SupplierOrderDetailEntity {
     private long supplyOrderDetailId;
     private double qty;
     private double orderPrice;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_product_id")
     private ProductEntity productEntity;
     @ManyToOne(cascade = CascadeType.ALL)

@@ -23,7 +23,7 @@ public class ProductDetailEntity {
     private Date updateDate;
     @Column(name = "update_time")
     private Time updateTime;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_product_id")
     private ProductEntity productEntity;
 

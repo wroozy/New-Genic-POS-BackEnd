@@ -13,7 +13,7 @@ public class ProductEntity {
     private String name;
     private String description;
     private String brand;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_category_id")
     private CategoryEntity categoryEntity;
 

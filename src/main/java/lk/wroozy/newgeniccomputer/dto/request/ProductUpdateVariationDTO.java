@@ -1,27 +1,41 @@
-package lk.wroozy.newgeniccomputer.dto;
+package lk.wroozy.newgeniccomputer.dto.request;
 
-public class ProductVariationDTO {
+public class ProductUpdateVariationDTO {
 
+    private long productDetailId;
     private String size;
     private double stock;
     private String warranty;
     private double buyingPrice;
     private double salePrice;
+    private boolean updated;
 
-    public ProductVariationDTO() {
+    public ProductUpdateVariationDTO() {
     }
 
-    public ProductVariationDTO(String size,
-                               double stock,
-                               String warranty,
-                               double buyingPrice,
-                               double salePrice
+    public ProductUpdateVariationDTO(long productDetailId,
+                                     String size,
+                                     double stock,
+                                     String warranty,
+                                     double buyingPrice,
+                                     double salePrice,
+                                     boolean updated
                                ) {
+        this.productDetailId = productDetailId;
         this.size = size;
         this.stock = stock;
         this.warranty = warranty;
         this.buyingPrice = buyingPrice;
         this.salePrice = salePrice;
+        this.updated = updated;
+    }
+
+    public long getProductDetailId() {
+        return productDetailId;
+    }
+
+    public void setProductDetailId(long productDetailId) {
+        this.productDetailId = productDetailId;
     }
 
     public String getSize() {
@@ -64,14 +78,24 @@ public class ProductVariationDTO {
         this.warranty = warranty;
     }
 
+    public boolean isUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(boolean updated) {
+        this.updated = updated;
+    }
+
     @Override
     public String toString() {
-        return "ProductVariationDTO{" +
-                "size='" + size + '\'' +
+        return "ProductUpdateVariationDTO{" +
+                "productDetailId=" + productDetailId +
+                ", size='" + size + '\'' +
                 ", stock=" + stock +
                 ", warranty='" + warranty + '\'' +
                 ", buyingPrice=" + buyingPrice +
                 ", salePrice=" + salePrice +
+                ", updated=" + updated +
                 '}';
     }
 }

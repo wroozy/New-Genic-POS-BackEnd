@@ -1,6 +1,8 @@
 package lk.wroozy.newgeniccomputer.service.impl;
 
-import lk.wroozy.newgeniccomputer.dto.ProductVariationDTO;
+import lk.wroozy.newgeniccomputer.dto.request.ProductUpdateRequestDTO;
+import lk.wroozy.newgeniccomputer.dto.request.ProductUpdateVariationDTO;
+import lk.wroozy.newgeniccomputer.dto.request.ProductVariationDTO;
 import lk.wroozy.newgeniccomputer.dto.request.ProductRequestDTO;
 import lk.wroozy.newgeniccomputer.dto.response.CategoryResponseDTO;
 import lk.wroozy.newgeniccomputer.dto.response.ProductDetailResponseDTO;
@@ -109,6 +111,81 @@ public class ProductServiceImpl implements ProductService {
 
         }catch (Exception e){
             throw new CustomException("Failed to fetch product : "+e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> updateProduct(ProductUpdateRequestDTO productRequestDTO, long productId) {
+        try{
+            if (productRequestDTO == null && productId == 0)
+                return new ResponseEntity<>("Product Id or product details not found",HttpStatus.BAD_REQUEST);
+
+            Optional<ProductEntity> product = productRepository.findById(productId);
+            if (product.isEmpty())
+                return new ResponseEntity<>("Product not found",HttpStatus.BAD_REQUEST);
+
+            ProductEntity productEntity = modelMapper.map(productRequestDTO, ProductEntity.class);
+            productEntity.setProductId(productId);
+            productEntity.setCategoryEntity(product.get().getCategoryEntity());
+            ProductEntity updatedProduct = productRepository.save(productEntity);
+
+            for (ProductUpdateVariationDTO variationDTO :
+                    productRequestDTO.getVariationList()) {
+                ProductDetailEntity productDetailEntity = modelMapper.map(variationDTO, ProductDetailEntity.class);
+                if (variationDTO.isUpdated()){
+                    productDetailEntity.setUpdateDate(DateConverter.localDateToSql(LocalDate.now()));
+                    productDetailEntity.setUpdateTime(DateConverter.localTimeToSql(LocalTime.now()));
+                    productDetailEntity.setProductEntity(updatedProduct);
+                    productDetailRepository.save(productDetailEntity);
+                }
+            }
+
+            return new ResponseEntity<>("Product updated",HttpStatus.OK);
+
+        }catch (Exception e){
+            throw new CustomException("Failed to update product"+e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> removeProductDetail(long productDetailId) {
+        try{
+            if (productDetailId == 0)
+                return new ResponseEntity<>("Product Detail id not found",HttpStatus.BAD_REQUEST);
+
+            Optional<ProductDetailEntity> productDetailEntity = productDetailRepository.findById(productDetailId);
+            if (productDetailEntity.isEmpty())
+                return new ResponseEntity<>("Product Detail not found",HttpStatus.BAD_REQUEST);
+
+            productDetailRepository.delete(productDetailEntity.get());
+
+            return new ResponseEntity<>("Product detail remove successful",HttpStatus.OK);
+
+        }catch (Exception e){
+            throw new CustomException("Failed to remove product detail : "+e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> removeProduct(long productId) {
+        try{
+            if (productId == 0)
+                return new ResponseEntity<>("Product Id not found",HttpStatus.BAD_REQUEST);
+
+            Optional<ProductEntity> productEntity = productRepository.findById(productId);
+            if (productEntity.isEmpty())
+                return new ResponseEntity<>("Product not found",HttpStatus.BAD_REQUEST);
+
+            List<ProductDetailEntity> detailList = productDetailRepository.findByProductEntity(productEntity.get());
+            for (ProductDetailEntity productDetailEntity :
+                    detailList) {
+                productDetailRepository.delete(productDetailEntity);
+            }
+
+            productRepository.delete(productEntity.get());
+            return new ResponseEntity<>("Product remove successful",HttpStatus.OK);
+        }catch (Exception e){
+            throw new CustomException("Failed to remove product : "+e.getMessage());
         }
     }
 
