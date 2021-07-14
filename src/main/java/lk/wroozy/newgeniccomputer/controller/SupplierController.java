@@ -16,7 +16,7 @@ import java.security.Principal;
 public class SupplierController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplierController.class);
-    private SupplierService supplierService;
+    private final SupplierService supplierService;
 
     @Autowired
     public SupplierController(SupplierService supplierService) {

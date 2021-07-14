@@ -55,9 +55,6 @@ public class ProductServiceImpl implements ProductService {
             Optional<CategoryEntity> categoryEntity = categoryRepository.findById(productRequestDTO.getCategoryId());
             if (categoryEntity.isEmpty())
                 return new ResponseEntity<>("Category not found",HttpStatus.NOT_FOUND);
-            Optional<ProductEntity> existingProduct = productRepository.findByProductCode(productRequestDTO.getProductCode());
-            if (existingProduct.isPresent())
-                return new ResponseEntity<>("Product Code already exist",HttpStatus.CONFLICT);
 
             ProductEntity productEntity = modelMapper.map(productRequestDTO, ProductEntity.class);
             productEntity.setCategoryEntity(categoryEntity.get());
@@ -125,10 +122,6 @@ public class ProductServiceImpl implements ProductService {
             Optional<ProductEntity> product = productRepository.findById(productId);
             if (product.isEmpty())
                 return new ResponseEntity<>("Product not found",HttpStatus.BAD_REQUEST);
-
-            Optional<ProductEntity> existingProduct = productRepository.findByProductCode(productRequestDTO.getProductCode());
-            if (existingProduct.isPresent())
-                return new ResponseEntity<>("Product Code already exist",HttpStatus.CONFLICT);
 
             ProductEntity productEntity = modelMapper.map(productRequestDTO, ProductEntity.class);
             productEntity.setProductId(productId);

@@ -12,6 +12,8 @@ public class ProductDetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_detail_id")
     private long productDetailId;
+    @Column(name = "product_code")
+    private String productCode;
     private String size;
     private double stock;
     private String warranty;
@@ -31,6 +33,7 @@ public class ProductDetailEntity {
     }
 
     public ProductDetailEntity(long productDetailId,
+                               String productCode,
                                String size,
                                double stock,
                                String warranty,
@@ -40,6 +43,7 @@ public class ProductDetailEntity {
                                Time updateTime,
                                ProductEntity productEntity) {
         this.productDetailId = productDetailId;
+        this.productCode = productCode;
         this.size = size;
         this.stock = stock;
         this.warranty = warranty;
@@ -56,6 +60,14 @@ public class ProductDetailEntity {
 
     public void setProductDetailId(long productDetailId) {
         this.productDetailId = productDetailId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
     public String getSize() {
@@ -126,6 +138,7 @@ public class ProductDetailEntity {
     public String toString() {
         return "ProductDetailEntity{" +
                 "productDetailId=" + productDetailId +
+                ", productCode='" + productCode + '\'' +
                 ", size='" + size + '\'' +
                 ", stock=" + stock +
                 ", warranty='" + warranty + '\'' +

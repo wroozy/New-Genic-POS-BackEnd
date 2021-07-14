@@ -2,6 +2,7 @@ package lk.wroozy.newgeniccomputer.dto.request;
 
 public class ProductVariationDTO {
 
+    private String productCode;
     private String size;
     private double stock;
     private String warranty;
@@ -11,17 +12,27 @@ public class ProductVariationDTO {
     public ProductVariationDTO() {
     }
 
-    public ProductVariationDTO(String size,
+    public ProductVariationDTO(String productCode,
+                               String size,
                                double stock,
                                String warranty,
                                double buyingPrice,
                                double salePrice
                                ) {
+        this.productCode = productCode;
         this.size = size;
         this.stock = stock;
         this.warranty = warranty;
         this.buyingPrice = buyingPrice;
         this.salePrice = salePrice;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
     public String getSize() {
@@ -67,7 +78,8 @@ public class ProductVariationDTO {
     @Override
     public String toString() {
         return "ProductVariationDTO{" +
-                "size='" + size + '\'' +
+                "productCode='" + productCode + '\'' +
+                ", size='" + size + '\'' +
                 ", stock=" + stock +
                 ", warranty='" + warranty + '\'' +
                 ", buyingPrice=" + buyingPrice +

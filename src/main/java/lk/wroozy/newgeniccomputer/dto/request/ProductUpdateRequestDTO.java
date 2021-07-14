@@ -3,7 +3,7 @@ package lk.wroozy.newgeniccomputer.dto.request;
 import java.util.List;
 
 public class ProductUpdateRequestDTO {
-    private String productCode;
+
     private String name;
     private String description;
     private String brand;
@@ -13,28 +13,17 @@ public class ProductUpdateRequestDTO {
     public ProductUpdateRequestDTO() {
     }
 
-    public ProductUpdateRequestDTO(String productCode,
-                                   String name,
+    public ProductUpdateRequestDTO(String name,
                                    String description,
                                    String brand,
                                    List<ProductUpdateVariationDTO> variationList,
                                    long categoryId) {
-        this.productCode = productCode;
         this.name = name;
         this.description = description;
         this.brand = brand;
         this.variationList = variationList;
         this.categoryId = categoryId;
     }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
     public String getName() {
         return name;
     }
@@ -78,8 +67,7 @@ public class ProductUpdateRequestDTO {
     @Override
     public String toString() {
         return "ProductUpdateRequestDTO{" +
-                "productCode='" + productCode + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
                 ", variationList=" + variationList +

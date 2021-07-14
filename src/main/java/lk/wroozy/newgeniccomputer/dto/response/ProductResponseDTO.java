@@ -7,7 +7,6 @@ import java.util.List;
 public class ProductResponseDTO {
 
     private long productId;
-    private String productCode;
     private String name;
     private String description;
     private String brand;
@@ -18,14 +17,12 @@ public class ProductResponseDTO {
     }
 
     public ProductResponseDTO(long productId,
-                              String productCode,
                               String name,
                               String description,
                               String brand,
                               CategoryResponseDTO categoryResponseDTO,
                               List<ProductDetailResponseDTO> productDetailList) {
         this.productId = productId;
-        this.productCode = productCode;
         this.name = name;
         this.description = description;
         this.brand = brand;
@@ -39,14 +36,6 @@ public class ProductResponseDTO {
 
     public void setProductId(long productId) {
         this.productId = productId;
-    }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
     }
 
     public String getName() {
@@ -93,7 +82,6 @@ public class ProductResponseDTO {
     public String toString() {
         return "ProductResponseDTO{" +
                 "productId=" + productId +
-                ", productCode='" + productCode + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +

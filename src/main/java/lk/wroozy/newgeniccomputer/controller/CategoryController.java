@@ -14,7 +14,7 @@ import java.security.Principal;
 @RequestMapping("/category")
 public class CategoryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService) {

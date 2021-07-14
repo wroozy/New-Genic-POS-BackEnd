@@ -15,7 +15,7 @@ import java.security.Principal;
 public class SupplyOrderController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplyOrderController.class);
-    private SupplyOrderService supplyOrderService;
+    private final SupplyOrderService supplyOrderService;
 
     @Autowired
     public SupplyOrderController(SupplyOrderService supplyOrderService) {

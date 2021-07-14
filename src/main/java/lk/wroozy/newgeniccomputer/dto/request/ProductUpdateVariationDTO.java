@@ -3,6 +3,7 @@ package lk.wroozy.newgeniccomputer.dto.request;
 public class ProductUpdateVariationDTO {
 
     private long productDetailId;
+    private String productCode;
     private String size;
     private double stock;
     private String warranty;
@@ -14,6 +15,7 @@ public class ProductUpdateVariationDTO {
     }
 
     public ProductUpdateVariationDTO(long productDetailId,
+                                     String productCode,
                                      String size,
                                      double stock,
                                      String warranty,
@@ -22,6 +24,7 @@ public class ProductUpdateVariationDTO {
                                      boolean updated
                                ) {
         this.productDetailId = productDetailId;
+        this.productCode = productCode;
         this.size = size;
         this.stock = stock;
         this.warranty = warranty;
@@ -36,6 +39,14 @@ public class ProductUpdateVariationDTO {
 
     public void setProductDetailId(long productDetailId) {
         this.productDetailId = productDetailId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
     public String getSize() {
@@ -90,6 +101,7 @@ public class ProductUpdateVariationDTO {
     public String toString() {
         return "ProductUpdateVariationDTO{" +
                 "productDetailId=" + productDetailId +
+                ", productCode='" + productCode + '\'' +
                 ", size='" + size + '\'' +
                 ", stock=" + stock +
                 ", warranty='" + warranty + '\'' +
