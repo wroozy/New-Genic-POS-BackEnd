@@ -10,6 +10,8 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private long productId;
+    @Column(name = "product_code")
+    private String productCode;
     private String name;
     private String description;
     private String brand;
@@ -21,11 +23,13 @@ public class ProductEntity {
     }
 
     public ProductEntity(long productId,
+                         String productCode,
                          String name,
                          String description,
                          String brand,
                          CategoryEntity categoryEntity) {
         this.productId = productId;
+        this.productCode = productCode;
         this.name = name;
         this.description = description;
         this.brand = brand;
@@ -38,6 +42,14 @@ public class ProductEntity {
 
     public void setProductId(long productId) {
         this.productId = productId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
     public String getName() {
@@ -76,6 +88,7 @@ public class ProductEntity {
     public String toString() {
         return "ProductEntity{" +
                 "productId=" + productId +
+                ", productCode='" + productCode + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +

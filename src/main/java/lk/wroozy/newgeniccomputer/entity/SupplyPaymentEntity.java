@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "supply_payment")
-public class SupplierPaymentEntity {
+public class SupplyPaymentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,12 +13,12 @@ public class SupplierPaymentEntity {
     private double total;
     private double discount;
 
-    public SupplierPaymentEntity() {
+    public SupplyPaymentEntity() {
     }
 
-    public SupplierPaymentEntity(long supplierPaymentId,
-                                 double total,
-                                 double discount) {
+    public SupplyPaymentEntity(long supplierPaymentId,
+                               double total,
+                               double discount) {
         this.supplierPaymentId = supplierPaymentId;
         this.total = total;
         this.discount = discount;
@@ -50,7 +50,7 @@ public class SupplierPaymentEntity {
 
     @Override
     public String toString() {
-        return "SupplierPaymentEntity{" +
+        return "SupplyPaymentEntity{" +
                 "supplierPaymentId=" + supplierPaymentId +
                 ", total=" + total +
                 ", discount=" + discount +
