@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/category")
 public class CategoryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);

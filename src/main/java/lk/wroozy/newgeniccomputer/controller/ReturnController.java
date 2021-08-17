@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/return")
 public class ReturnController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReturnController.class);

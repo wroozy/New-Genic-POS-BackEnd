@@ -79,16 +79,19 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public ResponseEntity<?> adminSingIn(AuthenticationRequest authenticationRequest) {
         try {
-            if (authenticationRequest.equals(null)) {
-                return new ResponseEntity<>("Username & Password not found", HttpStatus.BAD_REQUEST);
+            if (authenticationRequest.getUsername().isEmpty() && authenticationRequest.getPassword().isEmpty()) {
+                return new ResponseEntity<>("Username & Password not found", HttpStatus.NOT_FOUND);
+            }
+            if (authenticationRequest.getUsername() == null && authenticationRequest.getPassword() == null) {
+                return new ResponseEntity<>("Username & Password not found", HttpStatus.NOT_FOUND);
             }
             AdminEntity admin = adminRepository.findByUsername(authenticationRequest.getUsername());
-            if (admin.equals(null)) {
+            if (admin == null) {
                 return new ResponseEntity<>("User name doesn't match", HttpStatus.UNAUTHORIZED);
             }
             if (passwordEncoder.matches(authenticationRequest.getPassword(), admin.getPassword())) {
                 String token = generateToken(admin);
-                if (token.equals(null)) {
+                if (token == null) {
                     return new ResponseEntity<>("Token not generated", HttpStatus.UNAUTHORIZED);
                 }
                 AdminSignInResponseDTO signInResponseDTO = new AdminSignInResponseDTO(

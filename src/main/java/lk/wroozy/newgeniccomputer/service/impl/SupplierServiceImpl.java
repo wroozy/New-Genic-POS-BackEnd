@@ -56,7 +56,7 @@ public class SupplierServiceImpl implements SupplierService {
                         return new ResponseEntity<>("Supplier not saved", HttpStatus.BAD_REQUEST);
                     }
                 } else {
-                    return new ResponseEntity<>("Authorization failed", HttpStatus.UNAUTHORIZED);
+                    return new ResponseEntity<>("Hutto Admin sign in karapan ballo", HttpStatus.UNAUTHORIZED);
                 }
             } else {
                 return new ResponseEntity<>("Supplier details not found", HttpStatus.BAD_REQUEST);

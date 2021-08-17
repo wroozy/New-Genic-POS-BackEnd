@@ -5,13 +5,13 @@ import lk.wroozy.newgeniccomputer.service.SupplierService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/supply")
 public class SupplierController {
 
@@ -24,7 +24,7 @@ public class SupplierController {
     }
 
     @PostMapping("/addNew")
-    public ResponseEntity<?> addSupplier(@RequestBody SupplierRequestDTO supplierRequestDTO, Principal principal) {
+    public ResponseEntity<?> addSupplier(@RequestBody SupplierRequestDTO supplierRequestDTO,Principal principal) {
         LOGGER.info("request - supplier | addSupplier | supplierRequestDTO: {} | adminId: {}", supplierRequestDTO, principal.getName());
         ResponseEntity<?> supplier = supplierService.addSupplier(supplierRequestDTO, principal.getName());
         LOGGER.info("response - supplier | addSupplier | supplier: {}", supplier.getBody());
